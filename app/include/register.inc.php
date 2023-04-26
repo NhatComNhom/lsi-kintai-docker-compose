@@ -1,5 +1,5 @@
 <?php
-include "../database/connect.php";
+include "dbh.inc.php";
 
 if((isset($_POST['submit']))){
    $email = $_POST["email"];
