@@ -2,7 +2,8 @@
 // Start session
 session_start();
 
-include "dbh.inc.php";
+//include "dbh.inc.php";
+include "../database/connect.php";
 
 // Check if user is logged in
 if (!isset($_SESSION['username'])) {
@@ -33,14 +34,14 @@ $time = date("H:i");
 
 // Check connection
 if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+    die("Connection failed: " . pg_last_error());
 }
 
 // Get user ID from session
 $username = $_SESSION['username'];
 $sql = "SELECT id FROM tbl_employees WHERE username='$username'";
-$result = mysqli_query($conn, $sql);
-$row = mysqli_fetch_assoc($result);
+$result = pg_query($conn, $sql);
+$row = pg_fetch_assoc($result);
 $user_id = $row['id'];
 
 // Get GPS coordinates
@@ -50,10 +51,10 @@ $longitude = $_POST['longitude'];
 // Insert attendance record into database
 $sql = "INSERT INTO tbl_checkinout (user_id, action, check_time, latitude, longitude) VALUES ('$user_id', '$action', '$datetime', '$latitude', '$longitude')";
 
-if (mysqli_query($conn, $sql)) {
+if (pg_query($conn, $sql)) {
     $_SESSION['message'] = "Attendance recorded successfully.";
 } else {
-    $_SESSION['message'] = "Error: " . mysqli_error($conn);
+    $_SESSION['message'] = "Error: " . pg_last_error();
 }
 
 //Redirect to attendance page
@@ -69,6 +70,6 @@ if (isset($_POST['check_in'])) {
 
 echo '"<iframe src="https://google.com/maps?q='.$latitude.','.$longitude.'&hl=es;14&output=embed" style="width: 100%; height: 100%"></iframe>';
 // Close database connection
-mysqli_close($conn);
+pg_close($conn);
 exit();
 ?>

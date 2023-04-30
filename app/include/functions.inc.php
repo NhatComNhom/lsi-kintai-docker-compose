@@ -33,40 +33,41 @@ function pwdMatch($password, $cpassword) {
 }
 
 function uidExists($conn, $username, $email) {
-    $sql = " SELECT * FROM tbl_employees WHERE username = ? OR email = ?;";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)) {
+    $sql = "SELECT * FROM tbl_employees WHERE username = $1 OR email = $2;";
+    $stmt = pg_prepare($conn, "uid_exists", $sql);
+    if (!$stmt) {
         header('location:../register.php?error=stmtfailed');
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "ss", $username, $email);
-    mysqli_stmt_execute($stmt);
+    $resultData = pg_execute($conn, "uid_exists", array($username, $email));
 
-    $resultData = mysqli_stmt_get_result($stmt);
-
-    if ($row = mysqli_fetch_assoc($resultData)) {
+    if ($row = pg_fetch_assoc($resultData)) {
         return $row;
     } else {
         return false;
     }
 
-    mysqli_stmt_close($stmt);
+    pg_free_result($resultData);
 }
 
 function createUser($conn, $email, $name, $username, $password) {
     $role = 0;
-    $insert = "INSERT INTO `tbl_employees` (`name`, `username`, `email`, `password`, `role`) VALUES (?, ?, ?, ?, ?)";
-    $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $insert)) {
+    $insert = "INSERT INTO tbl_employees (name, username, email, password, role) VALUES ($1, $2, $3, $4, $5)";
+    $stmt = pg_prepare($conn, "create_user_query", $insert);
+    if (!$stmt) {
         header('location:../register.php?error=createuserfailed');
         exit();
     }
 
     $hashPwd = password_hash($password, PASSWORD_DEFAULT);
 
-    mysqli_stmt_bind_param($stmt, "ssssd", $name, $username, $email, $hashPwd, $role);
-    mysqli_stmt_execute($stmt);
+    $result = pg_execute($conn, "create_user_query", array($name, $username, $email, $hashPwd, $role));
+    if (!$result) {
+        header('location:../register.php?error=createuserfailed');
+        exit();
+    }
+    
     header('location:../register.php?error=none');
     exit();
 }

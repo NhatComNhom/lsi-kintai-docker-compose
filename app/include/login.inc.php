@@ -1,12 +1,13 @@
 <?php
 
-include "dbh.inc.php";
+//include "dbh.inc.php";
+include "../database/connect.php";
 
 if(isset($_POST['submit'])){
     $username = $_POST["uid"];
     $password = $_POST["pwd"];
 
-    require_once 'dbh.inc.php';
+    //require_once 'dbh.inc.php';
     require_once 'functions.inc.php';
 
     if (emptyInputLogin($username, $password) !== false) {
