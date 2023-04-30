@@ -2,8 +2,7 @@
 // Start session
 session_start();
 
-//include "dbh.inc.php";
-include "../database/connect.php";
+include "dbh.inc.php";
 
 // Check if user is logged in
 if (!isset($_SESSION['username'])) {
