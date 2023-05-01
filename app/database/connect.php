@@ -14,7 +14,7 @@
 // mysqli_select_db($conn,$dbname);
 
 //local
-$host = "25263006b898";
+$host = "my-postgres-container";
 $port = "5432";
 $dbname = "lsi_kintaikanri";
 $user = "lsi";
