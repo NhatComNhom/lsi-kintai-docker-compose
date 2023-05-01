@@ -2,28 +2,6 @@
 
 -- DROP DATABASE IF EXISTS lsi_kintaikanri;
 
-CREATE DATABASE lsi_kintaikanri
-    WITH
-    OWNER = lsi_kintaikanri
-    ENCODING = 'UTF8'
-    LC_COLLATE = 'en_US.UTF8'
-    LC_CTYPE = 'en_US.UTF8'
-    TABLESPACE = pg_default
-    CONNECTION LIMIT = -1
-    IS_TEMPLATE = False;
-
-ALTER DATABASE lsi_kintaikanri
-    SET "TimeZone" TO 'utc';
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres
-GRANT ALL ON TABLES TO lsi_kintaikanri;
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres
-GRANT ALL ON SEQUENCES TO lsi_kintaikanri;
-
-ALTER DEFAULT PRIVILEGES FOR ROLE postgres
-GRANT EXECUTE ON FUNCTIONS TO lsi_kintaikanri;
-
 CREATE TABLE IF NOT EXISTS tbl_checkinout (
     check_id serial PRIMARY KEY,
     user_id integer NOT NULL,

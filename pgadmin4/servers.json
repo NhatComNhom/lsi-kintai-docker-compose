@@ -3,7 +3,7 @@
         "1": {
             "Name": "lsi_kintaikanri_local",
             "Group": "Servers",
-            "Host": "db_postgres",
+            "Host": "my-postgres-container",
             "Port": 5432,
             "Username": "lsi",
             "Password": "lsilsilsi",
