@@ -3,6 +3,7 @@ services:
 
   db_postgres:
     image: postgres:15
+    hostname: my-postgres-container
     environment:
       POSTGRES_USER: lsi
       POSTGRES_PASSWORD: lsilsilsi
@@ -10,30 +11,16 @@ services:
       POSTGRES_INITDB_ARGS: "--encoding=UTF8 --lc-collate=en_US.UTF-8 --lc-ctype=en_US.UTF-8"
     volumes:
       - ./db_postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
-      - dbdata:/var/lib/postgresql/data
+      - ./dbdata:/var/lib/postgresql/data
+    restart: always
     ports:
       - 5432:5432
     networks:
       - lsi_attendance_system
 
-  db:
-    image: mysql:latest
-    environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: lsi_db
-      MYSQL_USER: lsi
-      MYSQL_PASSWORD: lsilsilsi
-      MYSQL_ALLOW_EMPTY_PASSWORD: 1
-    ports:
-        - 4306:3306
-    volumes:
-      - "./db:/docker-entrypoint-initdb.d"
-    networks:
-      - lsi_attendance_system
-
   pgadmin:
     depends_on:
-      - db
+      - db_postgres
     image: dpage/pgadmin4
     environment:
       PGADMIN_DEFAULT_EMAIL: lsi@email.com
@@ -45,7 +32,7 @@ services:
 
   app:
     depends_on:
-      - db
+      - db_postgres
     build: 
       context: ./php
       dockerfile: Dockerfile
