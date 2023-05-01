@@ -1,0 +1,14 @@
+{
+    "Servers": {
+        "1": {
+            "Name": "lsi_kintaikanri_local",
+            "Group": "Servers",
+            "Host": "db_postgres",
+            "Port": 5432,
+            "Username": "lsi",
+            "Password": "lsilsilsi",
+            "Database": "lsi_kintaikanri",
+            "MaintenanceDB": "postgres"
+        }
+    }
+}
