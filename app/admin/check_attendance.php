@@ -42,7 +42,7 @@
     // Tạo bảng điểm danh
     echo "<h1>$employee_name - $month/$year</h1>";
     echo "<div class='table-responsive-lg'>";
-    echo "<table class='table'>";
+    echo "<table class='table table-striped'>";
     echo "<thead><tr><th>Ngày</th><th>Check in</th><th>Bắt đầu giờ nghỉ</th><th>Kết thúc giờ nghỉ</th><th>Check out</th></tr></thead>";
     echo "<tbody>";
     while ($row = pg_fetch_assoc($result)) {
