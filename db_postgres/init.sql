@@ -2,15 +2,18 @@
 
 -- DROP DATABASE IF EXISTS lsi_kintaikanri;
 
+CREATE TYPE action_enum AS ENUM ('check_in', 'check_out', 'start_break', 'end_break');
+
 CREATE TABLE IF NOT EXISTS tbl_checkinout (
     check_id serial PRIMARY KEY,
     user_id integer NOT NULL,
-    action varchar(50),
+    action action_enum NOT NULL,
     check_time timestamp,
     latitude varchar(50),
     longitude varchar(50),
     remote boolean NOT NULL DEFAULT false
 );
+
 
 CREATE TABLE IF NOT EXISTS tbl_employees (
     id serial PRIMARY KEY,

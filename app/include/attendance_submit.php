@@ -29,8 +29,10 @@ if (isset($_POST['check_in'])) {
 
 // Get current date and time
 $datetime = date("Y-m-d H:i:s");
-$time = date("H:i");
-
+$date = date("H:i:s");
+$time = date('H:i');
+echo $datetime;
+echo $time;
 // Check connection
 if (!$conn) {
     die("Connection failed: " . pg_last_error());

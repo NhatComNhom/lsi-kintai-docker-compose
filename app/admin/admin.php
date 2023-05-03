@@ -21,7 +21,7 @@ if (isset($_SESSION['role'])&&!($_SESSION['role'])) {
   <link rel="stylesheet" href="../css/style.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>    
-  <title>LSI勤怠管理</title>
+  <title>LSI勤怠管理ADMIN</title>
 </head>
 <body>
 <header>
@@ -29,7 +29,7 @@ if (isset($_SESSION['role'])&&!($_SESSION['role'])) {
       <div class="container d-flex">
           <a class="navbar-brand" href="#">
               <h1 class="text-light">
-                  LSI勤怠管理
+                  LSI勤怠管理_ADMINページ
               </h1>
           </a>
           <div class="collapse navbar-collapse justify-content-end" id="navBarHeader">
@@ -48,9 +48,12 @@ if (isset($_SESSION['role'])&&!($_SESSION['role'])) {
   </nav>
   </header>
   <main>
-      <h2 class="text-light">
+        <h2 class="text-light">
           this is admin page!!
-      </h2>
+        </h2>
+        <?php 
+            include_once('./check_attendance.php'); 
+        ?>
   </main>
   <?php 
       include_once('../view/footer.php'); 

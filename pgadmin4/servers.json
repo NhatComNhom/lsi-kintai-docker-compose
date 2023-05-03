@@ -9,6 +9,16 @@
             "Password": "lsilsilsi",
             "Database": "lsi_kintaikanri",
             "MaintenanceDB": "postgres"
+        },
+        "2": {
+            "Name": "lsi_kintaikanri_render",
+            "Group": "Servers",
+            "Host": "dpg-ch2fv8l269v61fd6r56g-a.singapore-postgres.render.com",
+            "Port": 5432,
+            "Username": "lsi_kintaikanri",
+            "Password": "4ET9Ws3M43C3xsr5VREqp0pW6WMJQATM",
+            "Database": "lsi_kintaikanri",
+            "MaintenanceDB": "postgres"
         }
     }
 }
