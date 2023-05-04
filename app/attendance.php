@@ -12,8 +12,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <script src="./js/bootstrap.bundle.min.js"></script>
     <title>LSI勤怠管理</title>
     <link href="./css/style.css" rel="stylesheet">
     <title>Attendance</title>
@@ -41,17 +41,14 @@
     </div>
     <div class="container d-flex justify-content-center hidden">
         <div class="content">
-            <h1 class="text-info mt-2 ml-1"><?php echo $_SESSION['name']; ?>!</h1>
-            <h2 class="text-info">LSI勤怠管理へようこそ</h2>
+            <h1 class="text-primary">LSI勤怠管理へようこそ</h1>
             <form method="POST" action="./include/attendance_submit.php" id="attendance-form">
-                <div class="btn-group-vertical mb-3">
                     <button type="submit" id="check_in" class="btn btn-primary" name="check_in">Check In</button>
                     <button type="submit" id="start_break" class="btn btn-primary" name="start_break">Start Break</button>
                     <button type="submit" id="end_break" class="btn btn-primary" name="end_break">End Break</button>
                     <button type="submit" id="check_out" class="btn btn-primary" name="check_out">Check Out</button>            
                     <input type="hidden" name="latitude" id="latitude" value="">
                     <input type="hidden" name="longitude" id="longitude" value="">
-                </div>
             </form>
         </div>
     </div>

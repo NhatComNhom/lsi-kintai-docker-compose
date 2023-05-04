@@ -37,3 +37,26 @@ ADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES tbl_employees (id);
 -- Bổ sung index
 CREATE INDEX idx_user_id ON tbl_checkinout(user_id);
 CREATE INDEX idx_location_id ON tbl_checkinout(latitude);
+
+-- them test data 
+INSERT INTO tbl_checkinout (user_id, action, check_time, latitude, longitude, remote)
+SELECT 
+    user_id, 
+    CAST(action AS action_enum), 
+    CASE action
+        WHEN 'check_in' THEN (date_trunc('month', '2023-05-01'::date) + interval '1 day' * days.day + interval '9 hours')::timestamp
+        WHEN 'start_break' THEN (date_trunc('month', '2023-05-01'::date) + interval '1 day' * days.day + interval '12 hours')::timestamp
+        WHEN 'end_break' THEN (date_trunc('month', '2023-05-01'::date) + interval '1 day' * days.day + interval '13 hours')::timestamp
+        WHEN 'check_out' THEN (date_trunc('month', '2023-05-01'::date) + interval '1 day' * days.day + interval '18 hours')::timestamp
+        ELSE null -- xử lý lỗi nếu action không hợp lệ
+    END,
+    34.4458203, 
+    132.7108268, 
+    false 
+FROM
+    (SELECT 2 AS user_id UNION SELECT 3 UNION SELECT 4) AS users
+    CROSS JOIN LATERAL (SELECT generate_series(0, 365) AS day) AS days
+    CROSS JOIN (SELECT 'check_in' AS action UNION SELECT 'start_break' UNION SELECT 'end_break' UNION SELECT 'check_out') AS actions
+WHERE 
+    EXTRACT(ISODOW FROM (date_trunc('month', '2023-06-01'::date) + interval '1 day' * days.day)) NOT IN (6, 7);
+

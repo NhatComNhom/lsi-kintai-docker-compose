@@ -9,8 +9,8 @@ if (isset($_SESSION['role'])&&!($_SESSION['role'])) {
   exit();
 }
 
+include_once('./check_attendance.php'); 
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,8 +19,14 @@ if (isset($_SESSION['role'])&&!($_SESSION['role'])) {
   <title>Admin Dashboard</title>
   <link rel="stylesheet" href="../css/reset.css">
   <link rel="stylesheet" href="../css/style.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>    
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <link href="../css/datatables.min.css" rel="stylesheet">
+  <script src="../js/bootstrap.bundle.min.js"></script>
+  <script src="../js/jquery-3.6.4.min.js"></script>
+  <script src="../js/datatables.min.js"></script>
+  <script src="../js/pdfmake.min.js"></script>
+  <script src="../js/vfs_fonts.js"></script>
+  <script src="../js/custom.js"></script>
   <title>LSI勤怠管理ADMIN</title>
 </head>
 <body>
@@ -51,9 +57,38 @@ if (isset($_SESSION['role'])&&!($_SESSION['role'])) {
         <h2 class="text-light">
           this is admin page!!
         </h2>
-        <?php 
-            include_once('./check_attendance.php'); 
-        ?>
+        <h1><?php echo $employee_name ?> - <?php echo $month ?>/<?php echo $year ?></h1>
+        <div class="container">
+            <div class="data_table">
+                <table id="example" class="table table-striped table-bordered table-primary" style="width:100%">
+                    <thead class="bg-light">
+                        <tr class="table-primary">
+                        <th scope="col">日付曜日</th>
+                        <th scope="col">出勤</th>
+                        <th scope="col">lunch開始</th>
+                        <th scope="col">lunch終了</th>
+                        <th scope="col">退勤</th>
+                        <th scope="col">会社/在宅</th>
+                        <th scope="col">備考欄</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php while ($row = pg_fetch_assoc($result)): ?>
+                        <tr>
+                        <td><?php echo $row['day'] ?></td>
+                        <td><?php echo $row['check_in'] ?></td>
+                        <td><?php echo $row['start_break'] ?></td>
+                        <td><?php echo $row['end_break'] ?></td>
+                        <td><?php echo $row['check_out'] ?></td>
+                        <td><?php echo $row['remote']==1?'会社':'在宅' ?></td>
+                        <td></td>
+                        </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
   </main>
   <?php 
       include_once('../view/footer.php'); 

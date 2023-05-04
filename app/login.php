@@ -1,4 +1,6 @@
 <?php
+    error_reporting(E_ALL & ~E_NOTICE);
+    session_start();
     if (isset($_SESSION['username'])) {
         if(isset($_SESSION['role']))
         {
@@ -18,8 +20,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>    <title>LSI勤怠管理</title>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <script src="./js/bootstrap.bundle.min.js"></script>
+    <title>LSI勤怠管理</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
