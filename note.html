@@ -82,3 +82,22 @@ FROM
 WHERE 
     EXTRACT(ISODOW FROM (date_trunc('month', '2023-06-01'::date) + interval '1 day' * days.day)) NOT IN (6, 7);
 
+
+
+    <?php if (pg_num_rows($result) > 0): ?>
+    <?php while ($row = pg_fetch_assoc($result)): ?>
+        <tr>
+            <td><?php echo $row['day'] ?></td>
+            <td><?php echo $row['check_in'] ?></td>
+            <td><?php echo $row['start_break'] ?></td>
+            <td><?php echo $row['end_break'] ?></td>
+            <td><?php echo $row['check_out'] ?></td>
+            <td><?php echo $row['remote'] == 1 ? '会社' : '在宅' ?></td>
+            <td></td>
+        </tr>
+    <?php endwhile; ?>
+<?php else: ?>
+    <tr>
+        <td colspan="7">データなし</td>
+    </tr>
+<?php endif; ?>
