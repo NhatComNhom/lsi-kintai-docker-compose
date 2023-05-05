@@ -43,12 +43,21 @@
         <div class="content">
             <h1 class="text-primary">LSI勤怠管理へようこそ</h1>
             <form method="POST" action="./include/attendance_submit.php" id="attendance-form">
-                    <button type="submit" id="check_in" class="btn btn-primary" name="check_in">Check In</button>
-                    <button type="submit" id="start_break" class="btn btn-primary" name="start_break">Start Break</button>
-                    <button type="submit" id="end_break" class="btn btn-primary" name="end_break">End Break</button>
-                    <button type="submit" id="check_out" class="btn btn-primary" name="check_out">Check Out</button>            
-                    <input type="hidden" name="latitude" id="latitude" value="">
-                    <input type="hidden" name="longitude" id="longitude" value="">
+                <div class="row mt-3 mb-3">
+                    <button type="submit" id="check_in" class="btn btn-primary" name="check_in">出勤</button>
+                </div>
+                <div class="row mt-3 mb-3">
+                    <button type="submit" id="start_break" class="btn btn-primary" name="start_break">lunch開始</button>
+                </div>
+                <div class="row mt-3 mb-3">
+                    <button type="submit" id="end_break" class="btn btn-primary" name="end_break">lunch終了</button>
+                </div>
+                <div class="row mt-3 mb-3">
+                    <button type="submit" id="check_out" class="btn btn-primary" name="check_out">退勤</button>
+                </div>
+                <input type="hidden" name="latitude" id="latitude" value="">
+                <input type="hidden" name="longitude" id="longitude" value="">
+
             </form>
         </div>
     </div>

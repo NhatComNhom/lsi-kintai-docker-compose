@@ -101,3 +101,77 @@ WHERE
         <td colspan="7">データなし</td>
     </tr>
 <?php endif; ?>
+
+
+echo "<div class='table-responsive-lg'>";
+    echo "<table class='table'>";
+    echo "<thead><tr><th>Ngày</th><th>Check in</th><th>Bắt đầu giờ nghỉ</th><th>Kết thúc giờ nghỉ</th><th>Check out</th></tr></thead>";
+    echo "<tbody>";
+    while ($row = pg_fetch_assoc($result)) {
+        echo "<tr>";
+        echo "<td>{$row['day']}</td>";
+        echo "<td>{$row['check_in']}</td>";
+        echo "<td>{$row['start_break']}</td>";
+        echo "<td>{$row['end_break']}</td>";
+        echo "<td>{$row['check_out']}</td>";
+        echo "<td>{$row['remote'] == 1 ? '会社' : '在宅'}</td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    echo "</table>";
+    echo "</div>";
+    
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Hover to show iFrame</title>
+        <style>
+            #map-iframe {
+                display: none;
+                position: absolute;
+                top: 20px;
+                left: 0;
+                width: 30%;
+                height: 30%;
+                z-index: 1;
+            }
+        </style>
+    </head>
+    <body>
+    
+        <p onmouseover="showMap();" onmouseout="hideMap();">Hover this</p>
+    
+        <div id="map-container">
+            <iframe id="map-iframe" src="https://google.com/maps?q=34.4458219,132.7108216&hl=es;14&output=embed"></iframe>
+        </div>
+    
+        <script>
+            function showMap() {
+                document.getElementById("map-iframe").style.display = "block";
+            }
+    
+            // Open the iFrame in a new tab when clicked
+            document.getElementById("map-iframe").addEventListener("load", function() {
+                this.contentWindow.document.body.addEventListener("click", function() {
+                    window.open(this.location.href, '_blank');
+                });
+            });
+        </script>
+    
+    </body>
+    </html>
+    
+
+    echo "<td>";
+    echo "<p onclick="showMap();" onmouseout="hideMap();">在宅</p>
+    echo "<div id="map-container">
+    echo "<iframe id="map-iframe" src="https://google.com/maps?q=34.4458219,132.7108216&hl=es;14&output=embed"></iframe>
+    echo "</div>
+    echo "</td>
+
+
+
+
+<img class='location_icon' src='../image/location.png'>
+<iframe id='map-iframe' src=''></iframe>

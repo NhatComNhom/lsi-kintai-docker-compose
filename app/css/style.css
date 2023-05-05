@@ -17,25 +17,17 @@ body {
 #form-submit{
     width: 100%;
 }
-.data_table {
-    background: #fff;
-    padding: 15px;
-    box-shadow: 1px 3px 5px #aaa;
-    border-radius: 5px;
+
+#map-iframe {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 30%;
+    z-index: 1;
 }
 
-.dt-buttons {
-  float: right;
-}
-
-.dt-buttons .btn {
-  margin-left: 5px;
-  background-color: #007bff;
-  color: #fff;
-  border-color: #007bff;
-}
-
-.dt-buttons .btn:hover {
-  background-color: #0069d9;
-  border-color: #0062cc;
+.location_icon:hover {
+    cursor: pointer;
 }

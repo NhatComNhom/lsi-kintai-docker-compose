@@ -58,5 +58,4 @@ FROM
     CROSS JOIN LATERAL (SELECT generate_series(0, 365) AS day) AS days
     CROSS JOIN (SELECT 'check_in' AS action UNION SELECT 'start_break' UNION SELECT 'end_break' UNION SELECT 'check_out') AS actions
 WHERE 
-    EXTRACT(ISODOW FROM (date_trunc('month', '2023-06-01'::date) + interval '1 day' * days.day)) NOT IN (6, 7);
-
+    EXTRACT(ISODOW FROM (date_trunc('month', '2023-05-01'::date) + interval '1 day' * days.day)) NOT IN (6, 7);

@@ -8,8 +8,6 @@ if (isset($_SESSION['role'])&&!($_SESSION['role'])) {
   header("Location: ../index.php");
   exit();
 }
-
-include_once('./check_attendance.php'); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,15 +56,39 @@ include_once('./check_attendance.php');
         </nav>
     </header>
     <main>
-    <div class="container justify-content-center">
-        <h1 class="text-light">
-            ADMINページへようこそ
-        </h1>
-    </div>
+        <div class="container mt-3">
+            <div class="data_table bg-light p-3">
+                <h1 id="table_name" class="justify-content-center" style="display: flex; align-items: center; justify-content: center;">社員の名前と年月を入力してください</h1>
+                <table id="example" class="table table-striped table-bordered table-primary" style="width:100%">
+                    <thead>
+                        <tr class="table-primary">
+                        <th scope="col">名前</th> 
+                        <th scope="col">時刻</th>
+                        <th scope="col">活動</th>
+                        <th scope="col">会社/在宅</th>
+                        <th scope="col">備考欄</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table_body">
+                        <?php 
+                            include_once('./get_recently_action.php'); 
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
   </main>
   <?php 
       include_once('../view/footer.php'); 
   ?>
+  <script>
+    $(document).ready(function() {
+        $('#example').DataTable({
+            ordering: false
+        });
+    });
+
+  </script>
 </body>
 
 </html>
