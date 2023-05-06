@@ -27,7 +27,6 @@ include_once('./check_attendance.php');
     <script src="../js/vfs_fonts.js"></script>
     <title>LSI勤怠管理ADMIN</title>
 </head>
-<body>
     <header>
         <nav class="navbar navbar-expand-sm">
             <div class="container">
@@ -44,6 +43,9 @@ include_once('./check_attendance.php');
                             </div>
                             <div class="col">
                                 <li><a href='attendance_table.php' class='nav-link text-light'>勤怠確認</a></li>
+                            </div>
+                            <div class="col">
+                                <li><a href='work_location.php' class='nav-link text-light'>会社位置</a></li>
                             </div>
                             <div class="col">
                                 <li><p class='text-info mt-2 ml-1'>Hello there, ADMIN</p></li>

@@ -8,7 +8,6 @@ if (isset($_SESSION['role'])&&!($_SESSION['role'])) {
   header("Location: ../index.php");
   exit();
 }
-
 include_once('./check_attendance.php'); 
 ?>
 <!DOCTYPE html>
@@ -61,10 +60,38 @@ include_once('./check_attendance.php');
         </nav>
     </header>
     <main>
-    <div class="container justify-content-center">
-        <h1 class="text-light">
-            ADMINページへようこそ
-        </h1>
+    <div class="container d-flex bg-secondary mt-3">
+        <div class="row">
+            <h1 class="text-light justify-content-center">現在の職場</h1>
+            <div>
+                <?php
+                    include "../include/dbh.inc.php";
+
+                    // Tạo câu truy vấn SQL
+                    $sql_location = "SELECT * FROM tbl_work_location";
+                    $result_location = pg_query($conn, $sql_location);
+                    $row_location = pg_fetch_assoc($result_location);
+                    echo "<iframe src='https://google.com/maps?q={$row_location['latitude']},{$row_location['longitude']}&hl=es;14&output=embed' style='width: 100%; height: 100%'></iframe>";
+                    pg_close($conn);
+                ?>
+            </div>
+            <h1 class="text-light justify-content-center">会社の職場を更新する</h1>
+            <form action="./change_work_location.php" method="post">
+                <div class="container">
+                    <div class="row mt-4 mb-4">
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" placeholder="緯度を入力" name="lat">
+                        </div>
+                        <div class="col-md-4">
+                        <input type="text" class="form-control" placeholder="経度を入力" name="lon">
+                        </div>
+                        <div class="col-md-4 justify-content-right align-self-end">
+                            <button type="input" name="submit" class="btn btn-primary" id="form-submit">確認</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
   </main>
   <?php 

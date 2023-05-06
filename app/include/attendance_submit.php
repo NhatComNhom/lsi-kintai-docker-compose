@@ -47,13 +47,19 @@
     $latitude = $_POST['latitude'];
     $longitude = $_POST['longitude'];
 
+    //get kaisha GPS coordinates
+    $sql_location = "SELECT * FROM tbl_work_location";
+    $result_location = pg_query($conn, $sql_location);
+    $row_location = pg_fetch_assoc($result_location);
+    $centerLat = $row_location['latitude'];
+    $centerLng = $row_location['longitude'];
+    $radiusInMeters = $row_location['radiusinmeters'];
+
     //check location 
-    $centerLat = 34.4458203;
-    $centerLng = 132.7108268;
-    $radiusInMeters = 100;
     $distance = 6371000 * acos(cos(deg2rad($centerLat)) * cos(deg2rad($latitude)) * cos(deg2rad($longitude) - deg2rad($centerLng)) + sin(deg2rad($centerLat)) * sin(deg2rad($latitude)));
     $remote = $distance <= $radiusInMeters ? true : false;
     $remote_bool = boolval($remote);
+
     // Insert attendance record into database
     $sql = "INSERT INTO tbl_checkinout (user_id, action, check_time, latitude, longitude, remote) VALUES ('$user_id', '$action', '$datetime', '$latitude', '$longitude', '$remote_bool')";
 

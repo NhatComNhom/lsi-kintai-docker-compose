@@ -109,8 +109,4 @@ function loginUser($conn, $username, $password) {
     }
 }
 
-function isWithinRadius($lat, $lng, $centerLat, $centerLng, $radiusInMeters) {
-    $distance = 6371000 * acos(cos(deg2rad($centerLat)) * cos(deg2rad($lat)) * cos(deg2rad($lng) - deg2rad($centerLng)) + sin(deg2rad($centerLat)) * sin(deg2rad($lat)));
-    return $distance <= $radiusInMeters;
-}
 ?>

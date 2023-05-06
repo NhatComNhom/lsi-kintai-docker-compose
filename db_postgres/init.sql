@@ -24,6 +24,17 @@ CREATE TABLE IF NOT EXISTS tbl_employees (
     role integer NOT NULL DEFAULT 0
 );
 
+CREATE TABLE IF NOT EXISTS tbl_work_location (
+    id serial PRIMARY KEY,
+    latitude varchar(50),
+    longitude varchar(50),
+    radiusinmeters varchar(50)
+);
+
+INSERT INTO tbl_work_location (latitude, longitude, radiusinmeters)
+VALUES
+('34.4458203','132.7108268','100');
+
 INSERT INTO tbl_employees (name, username, email, password, role)
 VALUES
 ('ADMIN', 'admin', 'admin@lsi-dev.co.jp', '$2y$10$NEUntzaSR3rzP7Du7NpsRufVd71.Ag.joxcicpgbXWgdh3XZqdd26', 1),

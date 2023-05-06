@@ -44,6 +44,9 @@ if (isset($_SESSION['role'])&&!($_SESSION['role'])) {
                                 <li><a href='attendance_table.php' class='nav-link text-light'>勤怠確認</a></li>
                             </div>
                             <div class="col">
+                                <li><a href='work_location.php' class='nav-link text-light'>会社位置</a></li>
+                            </div>
+                            <div class="col">
                                 <li><p class='text-info mt-2 ml-1'>Hello there, ADMIN</p></li>
                             </div>
                             <div class="col">
