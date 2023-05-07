@@ -63,7 +63,7 @@ include_once('./check_attendance.php');
         <div class="container">
             <div class="row mt-3 mb-3">
                 <div class="col-md-4">
-                    <input type="text" class="form-control" id="employee_name" name="employee_name" placeholder="社員の名前">
+                    <select class="form-control" id="employee_name" name="employee_name"></select>
                 </div>
                 <div class="col-md-3">
                     <select class="form-control" id="month" name="month">
@@ -83,7 +83,7 @@ include_once('./check_attendance.php');
                     } ?>
                     </select>
                 </div>
-                <div class="col-md-2 justify-content-right align-self-end">
+                <div class="col-md-2 justify-content-right">
                     <button type="submit" onclick="getInfo()" id="check" class="btn btn-primary" name="check">検索</button>
                 </div>
             </div>
@@ -111,6 +111,26 @@ include_once('./check_attendance.php');
       include_once('../view/footer.php'); 
   ?>
 <script>
+    $(document).ready(function() { 
+        $.ajax({
+            url: 'get_employee.php',
+            method: 'POST',
+            data: {query:''},
+            dataType: 'json',
+            success: function(data) {
+                $('#employee_name').empty();
+                if (data.length > 0) {
+                    $.each(data, function(index, value) {
+                        $('#employee_name').append('<option value="'+value+'">'+value+'</option>');
+                    });
+                } else {
+                    $('#employee_name').append('<option value="">データなし</option>');
+                }
+            }
+        });
+    });
+
+
     function getInfo() {
         let employee_name = document.getElementById("employee_name").value;
         let month = document.getElementById("month").value;
