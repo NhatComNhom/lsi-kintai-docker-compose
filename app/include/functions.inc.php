@@ -101,9 +101,9 @@ function loginUser($conn, $username, $password) {
         $_SESSION['success'] = 'Login Successfully!';
         $_SESSION['role'] = $uidExists["role"];
         if($_SESSION['role']) {
-            echo "<script>alert('Hi Admin');window.location.href='../admin/admin.php';</script>";
+            echo "<script>alert('Adminページへようこそ');window.location.href='../admin/admin.php';</script>";
         } else {
-            echo "<script>alert('Login Successfully!');window.location.href='../attendance.php';</script>";
+            echo "<script>alert('ログインしました！');window.location.href='../attendance.php';</script>";
         }
         exit();
     }

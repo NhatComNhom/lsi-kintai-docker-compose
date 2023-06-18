@@ -17,6 +17,7 @@
                         echo "<li class='nav-item'><p class='text-info mt-2 ml-1'>Hello there, ".$_SESSION["name"]."</p></li>";
                         echo "<li class='nav-item'><a href='../include/logout.inc.php' class='nav-link text-light'>ログアウト</a></li>";
                     } else  {
+                        echo "<li class='nav-item'><a href='../register.php' class='nav-link text-light'>サインアップ</a></li>";
                         echo "<li class='nav-item'><a href='../login.php' class='nav-link text-light'>ログイン</a></li>";
                     }
                 ?>

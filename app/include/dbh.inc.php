@@ -1,17 +1,10 @@
 <?php
-//local
-$host = "my-postgres-container";
+//render-server
+$host = "dpg-ch2fv8l269v61fd6r56g-a.singapore-postgres.render.com";
 $port = "5432";
 $dbname = "lsi_kintaikanri";
-$user = "lsi";
-$password = "lsilsilsi";
-
-//render-server
-// $host = "dpg-ch2fv8l269v61fd6r56g-a.singapore-postgres.render.com";
-// $port = "5432";
-// $dbname = "lsi_kintaikanri";
-// $user = "lsi_kintaikanri";
-// $password = "4ET9Ws3M43C3xsr5VREqp0pW6WMJQATM";
+$user = "lsi_kintaikanri";
+$password = "4ET9Ws3M43C3xsr5VREqp0pW6WMJQATM";
 
 // Create connection
 $conn = pg_connect("host=".$host." port=".$port." dbname=".$dbname." user=".$user." password=".$password);

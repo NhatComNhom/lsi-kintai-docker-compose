@@ -57,11 +57,11 @@
 
     //check location 
     $distance = 6371000 * acos(cos(deg2rad($centerLat)) * cos(deg2rad($latitude)) * cos(deg2rad($longitude) - deg2rad($centerLng)) + sin(deg2rad($centerLat)) * sin(deg2rad($latitude)));
-    $remote = $distance <= $radiusInMeters ? true : false;
-    $remote_bool = boolval($remote);
+    $remote = $distance <= $radiusInMeters ? 1 : 0;
+    //$remote_bool = boolval($remote);
 
     // Insert attendance record into database
-    $sql = "INSERT INTO tbl_checkinout (user_id, action, check_time, latitude, longitude, remote) VALUES ('$user_id', '$action', '$datetime', '$latitude', '$longitude', '$remote_bool')";
+    $sql = "INSERT INTO tbl_checkinout (user_id, action, check_time, latitude, longitude, remote) VALUES ('$user_id', '$action', '$datetime', '$latitude', '$longitude', '$remote')";
 
     if (pg_query($conn, $sql)) {
         $_SESSION['message'] = "Attendance recorded successfully.";
@@ -80,10 +80,10 @@
     } elseif (isset($_POST['check_out'])) {
         $return_message = "退勤しました。時刻は".$time."です。";
     }
-    if (!$remote_bool) {
-        $return_message = $return_message."テレワーク中、距離は ".$distance;
+    if (!$remote) {
+        $return_message = $return_message."テレワーク中、距離は ".$distance."m";
     } else {
-        $return_message = $return_message."テレワークなし、距離は ".$distance;
+        $return_message = $return_message."テレワークなし、距離は ".$distance."m";
     }
     pg_close($conn);
 

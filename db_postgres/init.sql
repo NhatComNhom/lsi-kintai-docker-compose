@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS tbl_checkinout (
     check_time timestamp,
     latitude varchar(50),
     longitude varchar(50),
-    remote boolean NOT NULL DEFAULT false
+    remote integer NOT NULL DEFAULT 0
 );
 
 
@@ -63,7 +63,7 @@ SELECT
     END,
     34.4458203, 
     132.7108268, 
-    false 
+    0
 FROM
     (SELECT 2 AS user_id UNION SELECT 3 UNION SELECT 4) AS users
     CROSS JOIN LATERAL (SELECT generate_series(0, 365) AS day) AS days

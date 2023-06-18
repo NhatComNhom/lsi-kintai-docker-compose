@@ -18,45 +18,45 @@
     <section class="register-form">
         <div class="container d-flex justify-content-center">
             <form action="include/register.inc.php" class="col-md-6 p-3 my-3" id="form-login" method="post">
-                <h1 class="text-center text-uppercase mb-4 text-light">register</h1>
+                <h1 class="text-center text-uppercase mb-4 text-light">サインアップ</h1>
                 <?php
                     if (isset($_GET["error"])) {
                         if ($_GET["error"] == "emptyinput") {
-                            echo "<p class='text-warning'>Fill in all fields!</p>";
+                            echo "<p class='text-warning'>全部埋めてください。</p>";
                         } else if ($_GET["error"] == "invaliduid") {
-                            echo "<p class='text-warning'>Choose a proper username!</p>";
+                            echo "<p class='text-warning'>ほかのユーザーネームを入れてください。</p>";
                         } else if ($_GET["error"] == "invalidemail") {
-                            echo "<p class='text-warning'>Choose a proper email!</p>";
+                            echo "<p class='text-warning'>ほかのEメールを入れてください。</p>";
                         } else if ($_GET["error"] == "pwddontmatch") {
-                            echo "<p class='text-warning'>Password doesn't match!</p>";
+                            echo "<p class='text-warning'>パスワード同一しない！</p>";
                         } else if ($_GET["error"] == "usernametaken") {
-                            echo "<p class='text-warning'>User already exists!</p>";
+                            echo "<p class='text-warning'>ほかのユーザーネームを入れてください。</p>";
                         } else if ($_GET["error"] == "stmtfailed") {
-                            echo "<p class='text-warning'>Something went wrong, try again!</p>";
+                            echo "<p class='text-warning'>エラーが発生しました。もう一度お試しください。</p>";
                         } else if ($_GET["error"] == "createuserfailed") {
-                            echo "<p class='text-warning'>Something went wrong, try again!</p>";
+                            echo "<p class='text-warning'>エラーが発生しました。もう一度お試しください。</p>";
                         }  else if ($_GET["error"] == "none") {
-                            echo "<script>alert('Your Register Sucessfully! Now Login');window.location.href='login.php';</script>";
+                            echo "<script>alert('サインアップ完了でした！');window.location.href='login.php';</script>";
                         }
                     }
                 ?>
                 <div class="form-group mb-3">
-                    <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+                    <input type="email" class="form-control" id="email" placeholder="Eメール" name="email">
                 </div>
                 <div class="form-group mb-3">
-                    <input type="text" class="form-control" id="fullname" placeholder="Enter fullname" name="name">
+                    <input type="text" class="form-control" id="fullname" placeholder="フルネーム" name="name">
                 </div>
                 <div class="form-group mb-3">
-                    <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+                    <input type="text" class="form-control" id="username" placeholder="ユーザーネーム" name="username">
                 </div>
                 <div class="form-group mb-3">
-                    <input type="password" class="form-control" id="password" placeholder="Enter password" name="pwd">
+                    <input type="password" class="form-control" id="password" placeholder="パスワード" name="pwd">
                 </div>
                 <div class="form-group mb-3">
-                    <input type="password" class="form-control" id="cpassword" placeholder="Confirm password" name="cpwd">
+                    <input type="password" class="form-control" id="cpassword" placeholder="パスワード確認" name="cpwd">
                 </div>
                 <div class="form-group mb-3">        
-                    <button type="input" name="submit" class="btn btn-primary text-uppercase" id="form-submit">register now</button>
+                    <button type="input" name="submit" class="btn btn-primary text-uppercase" id="form-submit">サインアップ</button>
                 </div>
             </div>  
         </form>

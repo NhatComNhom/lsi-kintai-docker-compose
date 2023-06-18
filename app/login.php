@@ -37,9 +37,9 @@
             <?php
                 if (isset($_GET["error"])) {
                     if ($_GET["error"] == "emptyinput") {
-                        echo "<p class='text-warning'>Fill in all fields!</p>";
+                        echo "<p class='text-warning'>全部埋めてください。</p>";
                     } else if ($_GET["error"] == "wronglogin") {
-                        echo "<p class='text-warning'>Incorrect id or password</p>";
+                        echo "<p class='text-warning'>IDまたはパスワードが正しくありません。</p>";
                     }
                 }
             ?>
@@ -53,7 +53,7 @@
                 <button type="input" name="submit" class="btn btn-primary" id="form-submit">ログイン</button>
             </div>
             <div class="form-group mb-3">        
-                <a href="register.php" class="text-primary">Don't Have an Account?</a>
+                <a href="register.php" class="text-primary text-light">サインアップ</a>
             </div>
         </form>
     </div>  

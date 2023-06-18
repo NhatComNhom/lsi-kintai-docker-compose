@@ -68,7 +68,7 @@ if (isset($_SESSION['role'])&&!($_SESSION['role'])) {
                         <th scope="col">名前</th> 
                         <th scope="col">時刻</th>
                         <th scope="col">活動</th>
-                        <th scope="col">会社/在宅</th>
+                        <th scope="col">位置情報</th>
                         <th scope="col">備考欄</th>
                         </tr>
                     </thead>

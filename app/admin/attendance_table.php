@@ -97,7 +97,7 @@ include_once('./check_attendance.php');
                         <th scope="col">lunch開始</th>
                         <th scope="col">lunch終了</th>
                         <th scope="col">退勤</th>
-                        <th scope="col">会社/在宅</th>
+                        <th scope="col">位置情報</th>
                         <th scope="col">備考欄</th>
                         </tr>
                     </thead>
