@@ -17,9 +17,9 @@
                 MAX(CASE WHEN action = 'start_break' THEN check_time::time END) AS start_break,
                 MAX(CASE WHEN action = 'end_break' THEN check_time::time END) AS end_break,
                 MAX(CASE WHEN action = 'check_out' THEN check_time::time END) AS check_out,
-                MAX(CASE WHEN action = 'check_in' THEN CASE WHEN remote = true THEN 1 ELSE 0 END END) AS remote,
-                MAX(CASE WHEN action = 'check_in' THEN latitude END) AS latitude,
-                MAX(CASE WHEN action = 'check_in' THEN longitude END) AS longitude
+                MAX(CASE WHEN action = 'check_in' THEN remote END) AS remote,
+                MAX(CASE WHEN action = 'check_in' THEN latitude END) AS cin_latitude,
+                MAX(CASE WHEN action = 'check_in' THEN longitude END) AS cin_longitude
             FROM tbl_checkinout
             INNER JOIN tbl_employees ON tbl_checkinout.user_id = tbl_employees.id
             WHERE tbl_employees.name = '$employee_name'
@@ -50,7 +50,7 @@
                     echo "<p>在宅</p>";
                     echo "</div>";
                     echo "<div class='col'>";
-                    echo "<a href='https://google.com/maps?q={$row['latitude']},{$row['longitude']}&hl=es;14' target='_blank'>";
+                    echo "<a href='https://google.com/maps?q={$row['cin_latitude']},{$row['cin_longitude']}&hl=es;14' target='_blank'>";
                     echo "<img class='location_icon' src='../image/location.png'>";
                     echo "</a>";
                     echo "</div>";

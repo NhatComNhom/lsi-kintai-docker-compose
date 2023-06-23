@@ -12,7 +12,7 @@
                 WHEN action = 'start_break' THEN 'lunch開始'
                 WHEN action = 'end_break' THEN 'lunch終了'
             END) AS action,
-            (CASE WHEN remote = true THEN 1 ELSE 0 END) AS remote,
+            remote,
             latitude,
             longitude
         FROM tbl_checkinout 

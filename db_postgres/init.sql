@@ -1,8 +1,12 @@
 -- Database: lsi_kintaikanri
 
 -- DROP DATABASE IF EXISTS lsi_kintaikanri;
-
-CREATE TYPE action_enum AS ENUM ('check_in', 'check_out', 'start_break', 'end_break');
+DO $$ 
+BEGIN 
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'action_enum') THEN 
+        CREATE TYPE action_enum AS ENUM ('check_in', 'check_out', 'start_break', 'end_break');
+    END IF;
+END $$;
 
 CREATE TABLE IF NOT EXISTS tbl_checkinout (
     check_id serial PRIMARY KEY,
